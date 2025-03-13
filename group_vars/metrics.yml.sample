@@ -1,0 +1,22 @@
+# PROMETHEUS
+prometheus_port: 9091
+prometheus_listen_address: '' # To listen on all interfaces leave this empty
+prometheus_data_dir: /var/lib/prometheus
+prometheus_storage_tsdb_retention_time: "30d"
+# ALERTMANAGER
+alertmanager_port: 9093
+alertmanager_listen_address: '' # To listen on all interfaces leave this empty
+alertmanager_smtp_host: localhost
+alertmanager_smtp_port: 25
+alertmanager_smtp_username: '' #To authenticate to local/public smtp server, when applicable
+alertmanager_smtp_password: '' 
+alertmanager_send_email: 'localhost@localhost'
+alertmanager_receive_email:
+  - 'localhost@localhost'
+  - 'dummy@localhost'
+alertmanager_require_tls: 'false'
+# GRAFANA
+grafana_port: 3000
+grafana_admin_user: admin
+grafana_admin_password: admin
+grafana_default_theme: light

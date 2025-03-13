@@ -1,0 +1,35 @@
+---
+- name: set fact container_binary to docker centos 7
+  set_fact: 
+    container_binary: "docker"
+  when:
+    - ansible_distribution == 'CentOS'
+    - ansible_distribution_major_version == '7'
+
+- name: set fact container_binary to docker debian
+  set_fact: 
+    container_binary: "docker"
+  when:
+    - ansible_distribution == 'Debian'
+
+- name: ship systemd services
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 'alertmanager.service'
+    - 'prometheus.service'
+  notify: service handler
+
+- name: start prometheus services
+  systemd:
+    name: "{{ item }}"
+    daemon_reload: true
+    enabled: true
+    state: started
+  with_items:
+    - prometheus
+    - alertmanager
