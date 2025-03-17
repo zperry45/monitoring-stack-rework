@@ -6,7 +6,6 @@
 | Alertmanager      	| Query db of metrics and send alerts based on user defined rules 	|
 | Prometheus        	| Collect and store metrics scraped from exporters in database   	|
 | Node Exporter     	| Export hardware and OS metrics via http endpoint                	|
-| ZnapZend Exporter 	| Export state information on zfs snapshots and replication tasks 	|
 
 The services outlined above are deployed as containers using either podman or docker depending on Host OS.
 Containers are managed via systemd services and/or cockpit-podman module
@@ -43,7 +42,6 @@ git clone https://github.com/45drives/monitoring-stack.git
 | Grafana Default User     	| admin 	|
 | Grafana Default Password 	| admin 	|
 | Node Exporter Port       	| 9100  	|
-| Znapzend Port            	| 9101  	|
 
 * Run metrics playbook
 ```sh
