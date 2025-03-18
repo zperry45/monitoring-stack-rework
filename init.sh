@@ -34,7 +34,14 @@ if [ "$distro" == "ubuntu" ] && [ $distro_version -eq 22 ];then
     sudo add-apt-repository --yes --update ppa:ansible/ansible
     echo "Installing ansible..."
     sudo apt install ansible -y
+    echo -e "[registries.search]\nregistries = ['docker.io']" | sudo tee /etc/containers/registries.conf #ZPERRY 2025-03-18
 fi
+
+# Allow short-name resolution for rocky9 -- ZPERRY 2025-03-18
+if [ "$distro" == "rocky" ] && [ $distro_version -eq 9 ];then
+    echo -e "[registries.search]\nregistries = ['docker.io']" | sudo tee /etc/containers/registries.conf 
+fi
+#ZPERRY 2025-03-18
 
 # Initialize ansible varibles and inventory
 cp group_vars/metrics.yml.sample group_vars/metrics.yml
